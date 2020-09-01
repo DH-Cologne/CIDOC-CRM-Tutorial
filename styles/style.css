@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, sans-serif;
+}
+
+#video {
+    grid-area: video;
+}
+
+#slides iframe {
+    height: 100%;
+    width: 100%;
+}
+
+#slides {
+    grid-area: slides;
+}
+
+#transcript {
+    grid-area: transcript;
+    text-align: justify;
+    font-size: 1.1em;
+}
+
+#transcript #content {
+    height: 100%;
+    overflow: auto;
+    padding-right: 25px;
+}
+
+#kapitel {
+    grid-area: kapitel;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+    'video slides transcript'
+    'kapitel kapitel kapitel';
+    grid-gap: 5px;
+    background-color: #ccc;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: 65% 1fr;
+    height: 100vh;
+}
+
+.grid-container > div {
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    padding: 20px;
+}
