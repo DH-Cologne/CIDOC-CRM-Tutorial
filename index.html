@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CIDOC-CRM Tutorial</title>
+    <style>
+        body {
+            font-family: Helvetica, sans-serif;
+        }
+
+        a {
+            background-color: #eee;
+            cursor: pointer;
+        }
+
+        a:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+<video width="500" height="500" id="tutorial" controls>
+    <source src="assets/CIDOC-CRM-Tutorial_even_smaller.mp4" type="video/mp4">
+</video>
+<iframe id="presentation" src="assets/CIDOC-CRM-Tutorial.pdf" style="width:595px; height: 500px;"></iframe>
+
+<ul>
+    <li>Welcome</li>
+    <li>
+        <ul>
+            <li>
+                <a onclick="jumpTo(1, 3)">A standard for the integration of cultural information</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a onclick="jumpTo(15, 5)">
+            Presentation Outline
+        </a>
+    </li>
+    <li>Problem statement - information diversity</li>
+    <li>
+        <ul>
+            <li>
+                <a onclick="jumpTo(23, 7)">Cultural Diversity and Data Standards</a>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<script>
+    let presentation = "assets/CIDOC-CRM-Tutorial.pdf";
+
+    function jumpTo(timeCode, page) {
+        document.getElementById("tutorial").currentTime = timeCode;
+        document.getElementById("presentation").src = `${presentation}#page=${page}`;
+        document.getElementById('presentation').contentDocument.location.reload(true);
+    }
+</script>
+</body>
+</html>
