@@ -1,0 +1,108 @@
+// Helvetica Font Stack
+$font-stack: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$breakpoint: 1280px;
+
+body {
+    margin: 0;
+    font-family: $font-stack;
+    width: 100vw;
+    height: calc(100vh - 0.5rem);
+    background-color: #aaa;
+
+    overflow: hidden;
+
+    display: grid;
+    grid-template-areas:
+        'video slides transcript'
+        'kapitel kapitel kapitel';
+    grid-gap: 0.5rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: 80% 20%;
+
+    @media (max-width: $breakpoint) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: 40% 40% 20%;
+        grid-template-areas:
+            'video transcript'
+            'slides transcript'
+            'kapitel kapitel';
+    }
+
+    > div.container {
+        background-color: rgba(255, 255, 255, 0.7);
+        text-align: center;
+    }
+}
+
+#video-container {
+    grid-area: video;
+    display: grid;
+    place-items: center;
+    background-color: #333;
+    padding: 0;
+
+    video {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+#slides {
+    grid-area: slides;
+
+    display: grid;
+    place-items: center;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    iframe {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+#transcript {
+    grid-area: transcript;
+    text-align: justify;
+    font-size: 1.1em;
+    padding: 1rem;
+
+    #content {
+        height: 100%;
+        overflow: auto;
+        padding-right: 0.5rem;
+    }
+
+    h2 {
+        color: #444;
+    }
+}
+
+#kapitel {
+    grid-area: kapitel;
+
+    display: grid;
+    place-items: center;
+
+    padding: 0 1rem;
+    @media (max-width: $breakpoint) {
+        padding: 0;
+    }
+
+    background-color: #aaa;
+
+    #kapitel-container {
+        width: 100%;
+        max-height: 100% !important;
+        height: 50% !important;
+    }
+
+    #kapitel-title {
+        margin: 0;
+    }
+}
