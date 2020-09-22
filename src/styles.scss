@@ -1,11 +1,20 @@
 // Helvetica Font Stack
-$font-stack: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-stack: Frutiger, 'Frutiger Linotype', Univers, Calibri, 'Gill Sans',
+    'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaVu Sans Condensed',
+    'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, 'Helvetica Neue',
+    Helvetica, Arial, sans-serif;
 
 $breakpoint: 1280px;
 
 .resizable {
     resize: horizontal;
-            overflow: hidden;
+    overflow: hidden;
+    flex-grow: 0;
+
+    @media (max-width: $breakpoint) {
+        resize: none;
+        flex-grow: 1;
+    }
 }
 
 body {
@@ -32,6 +41,15 @@ body {
             width: 30%;
             text-align: center;
         }
+
+        @media (max-width: $breakpoint) {
+            flex-flow: row wrap;
+
+            div.container {
+                width: 50%;
+                height: 50%;
+            }
+        }
     }
 
     #row-bottom {
@@ -43,9 +61,15 @@ body {
 
 #chapter-tree {
     height: 100%;
-    min-width: 10% !important;
-    width: 10% !important;
+    width: max(10%, 300px) !important;
+    flex-shrink: 0;
+    flex-grow: 0;
     overflow-y: auto;
+
+    @media (max-width: $breakpoint) {
+        display: none;
+    }
+
     .tree-entry {
         padding: 0.5rem 1rem;
         text-align: left;

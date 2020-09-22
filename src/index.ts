@@ -26,7 +26,7 @@ for (const chapter of cidocCrmChapters) {
     videoElement.currentTime = chapter.timeInSeconds;
     slideImage.src = `./slides/${chapter.no}.jpg`;
     location.hash = `#slide-${chapter.no}`;
-  })
+  });
 }
 
 slideImage.src = `./slides/1.jpg`;
