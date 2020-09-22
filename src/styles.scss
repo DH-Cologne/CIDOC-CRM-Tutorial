@@ -3,35 +3,59 @@ $font-stack: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill
 
 $breakpoint: 1280px;
 
+.resizable {
+    resize: horizontal;
+            overflow: hidden;
+}
+
 body {
     margin: 0;
     font-family: $font-stack;
+    font-size: 14pt;
     width: 100vw;
-    height: calc(100vh - 0.5rem);
-    background-color: #aaa;
+    height: 100vh;
+    background-color: #e0e0e0;
 
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 
-    display: grid;
-    grid-template-areas:
-        'video slides transcript'
-        'kapitel kapitel kapitel';
-    grid-gap: 0.5rem;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-rows: 80% 20%;
-
-    @media (max-width: $breakpoint) {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-template-rows: 40% 40% 20%;
-        grid-template-areas:
-            'video transcript'
-            'slides transcript'
-            'kapitel kapitel';
+    .row {
+        display: flex;
+        flex-direction: row;
     }
 
-    > div.container {
-        background-color: rgba(255, 255, 255, 0.7);
-        text-align: center;
+    #row-top {
+        overflow-y: auto;
+
+        height: 90%;
+        div.container {
+            width: 30%;
+            text-align: center;
+        }
+    }
+
+    #row-bottom {
+        height: 10%;
+    }
+
+    overflow: hidden;
+}
+
+#chapter-tree {
+    height: 100%;
+    min-width: 10% !important;
+    width: 10% !important;
+    overflow-y: auto;
+    .tree-entry {
+        padding: 0.5rem 1rem;
+        text-align: left;
+        transition: all 125ms;
+        outline: 1px solid white;
+    }
+    .tree-entry:hover {
+        outline: 1px solid black;
+        background-color: white;
+        cursor: pointer;
     }
 }
 
@@ -39,20 +63,21 @@ body {
     grid-area: video;
     display: grid;
     place-items: center;
-    background-color: #333;
+    background-color: white;
     padding: 0;
+
+    width: 100%;
 
     video {
         width: 100%;
-        height: 100%;
+        height: auto;
     }
 }
 
 #slides {
-    grid-area: slides;
-
     display: grid;
     place-items: center;
+    background-color: white;
 
     img {
         width: 100%;
@@ -67,15 +92,24 @@ body {
 }
 
 #transcript {
-    grid-area: transcript;
     text-align: justify;
     font-size: 1.1em;
-    padding: 1rem;
+    padding: 0 0.5rem;
+    height: 100%;
+    overflow: auto;
+    flex-grow: 1;
 
-    #content {
-        height: 100%;
-        overflow: auto;
-        padding-right: 0.5rem;
+    .chapter + .chapter {
+        margin-top: 1rem;
+    }
+
+    .chapter {
+        outline: solid white 0.5rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        min-height: 100%;
     }
 
     h2 {
@@ -84,22 +118,20 @@ body {
 }
 
 #kapitel {
-    grid-area: kapitel;
+    width: 100%;
 
     display: grid;
     place-items: center;
 
-    padding: 0 1rem;
+    padding: 0.5rem;
     @media (max-width: $breakpoint) {
         padding: 0;
     }
 
-    background-color: #aaa;
-
     #kapitel-container {
         width: 100%;
         max-height: 100% !important;
-        height: 50% !important;
+        height: 100% !important;
     }
 
     #kapitel-title {
